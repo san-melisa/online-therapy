@@ -1,0 +1,50 @@
+<div class="content">
+  <h1>Appointments</h1>
+  <table class="my-table">
+    <thead>
+      <tr>
+        <th>Therapist</th>
+        <th>Client</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each bookings}}
+      <tr>
+        <td>{{therapist_id.user_id.name}} {{therapist_id.user_id.surname}}</td>
+        <td>{{user_id.name}} {{user_id.surname}}</td>
+        <td>{{generateDate appointmentDate 'D MMMM YYYY, h:mm'}} </td>
+        {{#if (eq status 'cancelled' )}}
+        <td class="status-rejected">{{status}} by <strong>{{cancelledBy.role}}</strong> {{cancelledBy.name}}
+          {{cancelledBy.surname}}</td>
+        {{else}}
+        <td class="status-approved">{{status}}</td>
+        {{/if}}
+        <td style="text-align: right;">
+          <div class="d-flex justify-content-end">
+            <form action="/admin/appointmentdetails/{{_id}}" method="GET">
+              <button type="submit" class="btn btn-sm btn-secondary"
+                style="width: 87px; white-space: nowrap; margin-right: 2px;"><i class="fas fa-info-circle"></i>
+                Details</button>
+            </form>
+            {{#if (eq status 'cancelled')}}
+            <form action="/admin/approve-appointment/{{_id}}" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-success" style="width: 87px; white-space: nowrap;"><i
+                  class="fas fa-check"></i> Approve</button>
+            </form>
+            {{else}}
+            <form action="/admin/cancel/{{_id}}" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger" style="width: 87px; white-space: nowrap;"><i
+                  class="fas fa-trash-alt"></i> Cancel</button>
+            </form>
+            {{/if}}
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>

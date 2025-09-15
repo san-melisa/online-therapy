@@ -1,0 +1,79 @@
+<div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-md-2">
+            <div class="card">
+                <img src="{{ therapist.photoUrl }}" alt="{{ therapist.user_id.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ therapist.user_id.name }} {{ therapist.user_id.surname }}</h5>
+                    <h6 class="card-subtitle mb-2">{{ therapist.title }}</h6>
+                    <hr>
+                    <p><strong>Member since: </strong> {{ generateDate therapist.user_id.createdAt 'MMMM YYYY'}}</p>
+                    <hr>
+                    <h6 class="card-subtitle mb-2">Therapy Categories</h6>
+                    <ul class="list-unstyled mb-0">
+                        {{#each therapist.categoryAreas}}
+                        <li>{{this.name}}</li>
+                        {{/each}}
+                    </ul>
+                    <hr>
+                    <form action="/booking/{{therapist.id}}" method="GET" enctype="multipart/form-data">
+                        <button type="submit" class="base-button gray-btn large-btn book-appointment-btn mb-3">
+                            Book Appointment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2">Education</h6>
+                            <hr>
+                            {{#each therapist.university as |uni|}}
+                            <p class="card-text uni-text"><strong>University:</strong> {{ uni.uniName }}</p>
+                            <p class="card-text uni-text"><strong>Degree:</strong> {{ uni.degree }}</p>
+                            <p class="card-text uni-text"><strong>Graduation Department:</strong> {{ uni.department }}
+                            </p>
+                            <p class="card-text uni-text"><strong>Graduation Year:</strong> {{ uni.graduationYear }}</p>
+                            <br>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2">Expertise Areas</h6>
+                            <hr>
+                            <ul class="list-unstyled mb-0">
+                                {{#each therapist.expertiseAreas}}
+                                <li>{{this.name}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2">About the Therapist</h6>
+                            <hr>
+                            <p class="card-text">{{ therapist.about }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2">Certificates</h6>
+                            <hr>
+                            <p class="card-text">{{ therapist.certificates }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

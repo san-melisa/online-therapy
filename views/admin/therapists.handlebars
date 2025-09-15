@@ -1,0 +1,50 @@
+<div class="content">
+  <h1>Our Therapists</h1>
+  <table class="my-table">
+    <thead>
+      <tr>
+        <th>Fullname</th>
+        <th>Email</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each therapists}}
+      <tr>
+        <td>{{user_id.name}} {{user_id.surname}}</td>
+        <td>{{user_id.email}}</td>
+        <td>{{title}}</td>
+        <td>
+          {{#if (eq isVisible true)}}
+            <p class="status-approved"> Visible</p>
+            {{else}}
+            <p class="status-rejected">Invisible</p>
+            {{/if}}
+        </td>
+
+        <td style="text-align: right;">
+          <div class="d-flex justify-content-end">
+            <form action="/admin/therapistprofile/{{_id}}" method="GET">
+              <button type="submit" class="btn btn-sm btn-secondary" style="margin-right: 2px;">
+                <i class="fas fa-info-circle"></i> Details
+              </button>
+            </form>
+
+            <form action="/admin/editprofile/{{_id}}" method="GET">
+              <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 2px;">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+            </form>
+            <form action="/admin/reject/{{_id}}" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>

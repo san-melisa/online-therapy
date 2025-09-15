@@ -1,0 +1,189 @@
+<!-- Start of Banner-->
+<div class="banner">
+    <div class="banner-content">
+        <h1 class="headline">Free Online Therapy</h1>
+        <p class="subheadline">Personalized Online Therapy Sessions Provided by Caring Volunteers</p>
+        <button class="base-button extra-btn"> <a href="/#therapists-section" style="color:white;text-decoration:none;">
+                Find a Therapist</a> </button>
+    </div>
+</div>
+<!-- End of Banner-->
+
+<!-- Start of How to use?-->
+<div class="container-fluid mt-5 mb-5 bg-light p-5">
+    <h2 class="title">How to Start Therapy at Therapy Treasure?</h2>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <h3><span class="step-number">1</span> Choose a Psychologist</h3>
+            <p>Select a professional who meets your criteria and with whom you feel comfortable.</p>
+        </div>
+        <div class="col-md-4">
+            <h3><span class="step-number">2</span> Free Consultation</h3>
+            </h3>
+            <p>Take advantage of the kindness of our volunteer therapists as they provide free therapy sessions that
+                support your wellbeing.</p>
+        </div>
+        <div class="col-md-4">
+            <h3><span class="step-number">3</span> Start Therapy</h3>
+            <p>Schedule a suitable appointment and start your session immediately.</p>
+        </div>
+    </div>
+</div>
+<!-- End How to use?-->
+
+<!--Start of Content-->
+<!--Start of Sidebar-->
+<div class="container-fluid" id="therapists-section">
+    <div class="row">
+        <div class="col-md-3 mt-4 ">
+            <div class="sidebar bg-light p-3 mt-3">
+                <form action="/therapist/search#therapists-section" method="GET">
+                    <div class="input-group mb-5">
+                        <input type="text" class="form-control search-input" name="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn search-icon-btn" type="submit">
+                            <i class="fas fa-search" style="color:#5e548e;"></i>
+                        </button>
+                    </div>
+                </form>
+                <h5>Our Therapists</h5>
+                {{#each categories}}
+                <div class="form-check">
+                    <input class="form-check-input category-checkbox" type="checkbox" value="{{_id}}" id="{{_id}}">
+                    <label class="form-check-label" for="{{_id}}">{{name}}</label>
+                </div>
+                {{/each}}
+                <h5 class="mt-4">Reasons for Application</h5>
+                <form>
+                    {{#each expertises}}
+                    <div class="form-check">
+                        <input class="form-check-input expertise-checkbox" type="checkbox" value="{{_id}}" id="{{_id}}">
+                        <label class="form-check-label" for="{{_id}}">
+                            {{name}}
+                        </label>
+                    </div>
+                    {{/each}}
+                </form>
+            </div>
+        </div>
+        <!--Start of Therapists-->
+
+        <div class="col-md-9 mt-4">
+            <div class="row">
+                {{#each therapists}}
+                <div class="col-md-11 mb-4 mx-auto therapist-card" data-expertises="{{areasToString expertiseAreas}}"
+                    data-category="{{areasToString categoryAreas}}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{ photoUrl }}" alt="{{ name }}" class="img-fluid">
+                                </div>
+                                <div class="col-md-4 mt-5">
+                                    <h5 class="card-title">{{user_id.name}} {{user_id.surname}}</h5>
+                                    <h6 class="card-subtitle mb-2">{{title}}</h6>
+                                    <div class="mt-4">
+                                        <button class="base-button purple-btn large-btn">
+                                            <a href="/booking/{{_id}}" style="text-decoration: none; color: white;">Book
+                                                Appointment</a></button>
+                                        <button class="base-button gray-btn large-btn">
+                                            <a href="/therapist/{{_id}}" style="color:white;text-decoration:none;"> More
+                                                Information</a>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 d-flex align-items-center">
+                                    <div class="vertical-divider"></div>
+                                </div>
+                                <div class="col-md-5 mt-3">
+                                    <h6 class="card-subtitle mb-2">About the Therapist</h6>
+                                    <p class="card-text">
+                                        {{truncate about 200}}...<a href="/therapist/{{_id}}"
+                                            style="color:#5e548e;">Read More</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="base-button purple-btn " id="load-more">Show More</button>
+                </div>
+            </div>
+        </div>
+
+        <!--End of Therapists-->
+
+    </div>
+</div>
+<!--End of Sidebar-->
+
+<!-- Start of Info -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>Why Choose Us?</h3>
+            <p>Experience the benefits of our free and volunteer-based therapy services provided by dedicated
+                professionals.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>Choose a Psychologist</h3>
+            <p>Select a professional who matches your criteria and makes you feel comfortable.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>Privacy</h3>
+            <p>Get support without sharing your personal information. Share your application reason with your
+                therapist, along with the trust you have in confidentiality.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>No Cost Involved</h3>
+            <p>Access therapy services at no cost on our platform.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>Affordable for Everyone</h3>
+            <p>Connect with a wide network of therapists who offer their services free of charge, catering to different
+                budgets and needs.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="icon-relevant-to-the-topic"></i>
+            <h3>Start Therapy Immediately</h3>
+            <p>Get support at any time of the day from anywhere with an internet connection to continue your therapy
+                process according to your own schedule.</p>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End of Info -->
+
+<!-- Start of Join Our Team Section -->
+<section class="join-our-team-section bg-light pt-5 pb-5 mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <h2 class="section-title">Join Our Team</h2>
+                <p class="section-description">We are always in search of competent and caring therapists to join our
+                    team. We would love to hear from you if you are a certified therapist who is enthusiastic about
+                    helping people. Our staff of dedicated therapists at Therapy Treasure provides their services
+                    voluntarily, without any charges. Participate with us in transforming people's lives and
+                    contributing to the well-being of our society.
+
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-12 text-center">
+                <a href="/applicationform" class="base-button purple-btn large2-btn mt-5 mt-lg-4">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Join Our Team Section -->

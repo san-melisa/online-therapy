@@ -1,0 +1,60 @@
+<div class="content">
+    <div class="col-md-12 mb-3 mt-5">
+        <form action="/admin/schedule" method="POST" enctype="multipart/form-data" id="scheduleForm">
+            <h3 style="text-align: center;">Schedule your Calendar</h3>
+            <h6 style="text-align: center;">Select the time slots that you can give therapy <strong>on a daily
+                    basis</strong>
+                and then <strong>click the schedule button</strong> to schedule. 
+                <br>
+                Please click the <strong>"Schedule Free Day"</strong> button for the days you do not prefer to work.
+                </h6>
+            <div class="card booking-container">
+                <div class="calendar-container mb-0">
+                    <button class="calendar-nav-btn" id="prevWeek" type="button">&lt;</button>
+                    <div id="days" class="days-container"></div>
+                    <button class="calendar-nav-btn" id="nextWeek" type="button">&gt;</button>
+                </div>
+                <hr>
+                <div class="timeSlots">
+                    <div id="timeSlots">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <input type="hidden" name="appointmentDate" id="appointmentDate" value="">
+                <input type="hidden" name="appointmentTime" id="appointmentTime" value="">
+                <div class="d-flex justify-content-end m-3">
+                    <button type="submit" class="base-button gray-btn" id="ScheduleButton" >
+                        Schedule
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="d-flex justify-content-center">
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each schedule}}
+                <tr>
+                    <td>{{generateDate this.date "D MMM YYYY, dddd"}}</td>
+                    <td class="time-slots">
+                        {{#each (sortByStartTime this.slots)}}
+                        <div class="time-slot{{#if this.isReserved}} reserved{{else}} available{{/if}}">
+                            {{this.startTime}} - {{this.endTime}}
+                        </div>
+                        {{/each}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>

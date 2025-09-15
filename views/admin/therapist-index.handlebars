@@ -1,0 +1,53 @@
+<div class="content">
+  <h1>Welcome {{#if currentUser}}{{currentUser.name}} {{currentUser.surname}}{{/if}}</h1>
+  <div class="dashboard">
+    <div class="dashboard-card">
+      <h2>Total Appointments</h2>
+      <p id="total-appointments">{{totalAppointments}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Completed Appointments</h2>
+      <p id="completed-appointments">{{completedAppointments}}</p>
+    </div>
+     <div class="dashboard-card">
+      <h2>Number of Appointments This Month</h2>
+      <p id="completed-appointments">{{monthlyAppointments}}</p>
+    </div>
+     <div class="dashboard-card">
+      <h2>Therapist's Percentage of Therapies</h2>
+      <p id="completed-appointments">{{percentageTherapies}} %</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Cancelled Appointments by Therapist</h2>
+      <p id="cancelled-appointments">{{cancelledByTherapist}}</p>
+    </div>
+        <div class="dashboard-card">
+      <h2>Cancelled Appointments by User</h2>
+      <p id="cancelled-appointments">{{cancelledByUser}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Message Meetings</h2>
+      <p id="message-meetings">{{messageMeetings}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Audio Call Meetings</h2>
+      <p id="audio-call-meetings">{{audioCallMeetings}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Video Call Meetings</h2>
+      <p id="video-call-meetings">{{videoCallMeetings}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Whatsapp Usage</h2>
+      <p id="whatsapp-usage">{{whatsappUsage}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Skype Usage</h2>
+      <p id="skype-usage">{{skypeUsage}}</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Zoom Usage</h2>
+      <p id="zoom-usage">{{zoomUsage}}</p>
+    </div>
+  </div>
+</div>

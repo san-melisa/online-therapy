@@ -1,0 +1,190 @@
+<div class="small-banner">
+    <h1 class="banner-title">Apply to Become a Therapist</h1>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="/therapist/apply" method="POST" enctype="multipart/form-data">
+                <div class="form-group ">
+                    <label for="name">First Name *</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{values.name}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "name")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="surname">Last Name *</label>
+                    <input type="text" class="form-control" id="surname" name="surname" value="{{values.surname}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "surname")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="email">Email Address *</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{values.email}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "email")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="password">Password *</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                    {{#each errors}}
+                    {{#if (eq this.param "password")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="password">Confirm Password *</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                    {{#each errors}}
+                    {{#if (eq this.param "confirmPassword")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="phone">Phone Number *</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{values.phone}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "phone")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="title">Title *</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{values.title}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "title")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="title">Licence Number *</label>
+                    <input type="text" class="form-control" id="licenceNumber" name="licenceNumber" value="{{values.licenceNumber}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "licenceNumber")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group university-group">
+                    <input type="hidden" name="universityCount" value="1">
+                    <div>
+                        <label for="university[0].uniName">University *</label>
+                        <input type="text" class="form-control" name="university[0].uniName" value="{{values.university.0.uniName}}">
+                        {{#each errors}}
+                        {{#if (eq this.param "university[0].uniName")}}
+                        <div class="alert custom-alert p-0 mb-1" role="alert">
+                            {{this.msg}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    <div>
+                        <label for="university[0].degree">Degree *</label>
+                        <input type="text" class="form-control" name="university[0].degree"  value="{{values.university.0.degree}}">
+                        {{#each errors}}
+                        {{#if (eq this.param "university[0].degree")}}
+                        <div class="alert custom-alert p-0 mb-1" role="alert">
+                            {{this.msg}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    <div>
+                        <label for="university[0].department">Graduation Department *</label>
+                        <input type="text" class="form-control" name="university[0].department"  value="{{values.university.0.department}}">
+                        {{#each errors}}
+                        {{#if (eq this.param "university[0].department")}}
+                        <div class="alert custom-alert p-0 mb-1" role="alert">
+                            {{this.msg}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    <div>
+                        <label for="university[0].graduationYear">Graduation Year *</label>
+                        <input type="number" class="form-control" name="university[0].graduationYear"  value="{{values.university.0.graduationYear}}" min="1940"
+                            max="{{currentYear}}">
+                        {{#each errors}}
+                        {{#if (eq this.param "university[0].graduationYear")}}
+                        <div class="alert custom-alert p-0 mb-1" role="alert">
+                            {{this.msg}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                        {{#if error}}
+                        <div class="alert alert-danger" style=" background-color: transparent; border: none;">{{ error
+                            }}</div>
+                        {{/if}}
+                    </div>
+                    {{!-- <button class="add-university-btn" type="button">+ Add Another University</button> --}}
+
+                </div>
+                <div class="form-group ">
+                    <label for="cv">CV *(PDF format only)</label>
+                    <input type="file" class="form-control" id="cv" name="cv" accept=".pdf" value="{{values.cv}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "cv")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="motivationLetter">Motivation Letter (PDF format only)</label>
+                    <input type="file" class="form-control" id="motivationLetter" name="motivationLetter" accept=".pdf" value="{{values.motivationLetter}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "motivationLetter")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="form-group ">
+                    <label for="motivationLetter">Reference Letter (PDF format only)</label>
+                    <input type="file" class="form-control" id="referenceLetter" name="referenceLetter" accept=".pdf" value="{{values.referenceLetter}}">
+                    {{#each errors}}
+                    {{#if (eq this.param "referenceLetter")}}
+                    <div class="alert custom-alert p-0 mb-1" role="alert">
+                        {{this.msg}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="btn-centered">
+                    <button type="submit" class="base-button purple-btn mt-3">Apply Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Book an Appointment</h2>
+            <div class="card text-center mb-4" style="border: none;">
+                <img src="{{ therapist.photoUrl }}" alt="{{ therapist.user_id.name }}" class="avatar mx-auto">
+                <div class="card-body">
+                    <h5 class="card-title">{{ therapist.user_id.name }} {{ therapist.user_id.surname }}</h5>
+                    <h6 class="card-subtitle mb-2">{{ therapist.title }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <form action="/booking/{{therapist.id}}" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <h5 style="text-align: center;">Choose Meeting Type</h5>
+                        <div class="d-flex justify-content-between">
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="text" name="meetingType" value="text">
+                                <label for="text" class="meeting-type"><i class="fas fa-comments"></i>Messagge</label>
+                            </div>
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="voice" name="meetingType" value="voice">
+                                <label for="voice" class="meeting-type"><i class="fas fa-phone-alt"></i>
+                                    Voice Call</label>
+                            </div>
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="video" name="meetingType" value="video">
+                                <label for="video" class="meeting-type"><i class="fas fa-video"></i>
+                                    Video Call</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <h5 style="text-align: center;">Choose Platform</h5>
+                        <div class="d-flex justify-content-between">
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="zoom" name="platform" value="zoom">
+                                <label for="zoom"><img src="/img/zoom-logo.png" alt="Zoom"
+                                        class="platform-logo img-fluid mx-auto"></label>
+                            </div>
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="skype" name="platform" value="skype">
+                                <label for="skype"><img src="/img/skype-logo.png" alt="Skype"
+                                        class="platform-logo img-fluid mx-auto"></label>
+
+                            </div>
+                            <div class="card custom-card text-center">
+                                <input type="radio" id="whatsapp" name="platform" value="whatsapp">
+                                <label for="whatsapp"><img src="/img/whatsapp-logo.png" alt="WhatsApp"
+                                        class="platform-logo img-fluid mx-auto"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3" id="platform-details" style="display:none;">
+                        <div class="d-flex justify-content-center">
+                            <div class="card custom-card p-5">
+                                <h5 id="platform-details-text"></h5>
+                                <input type="text" id="platform-details-input" class="form-control"
+                                    name="platformDetails" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <h5 style="text-align: center;">Choose Appointment</h5>
+                        <div class="card booking-container">
+                            <div class="calendar-container mb-0">
+                                <button class="calendar-nav-btn" id="prevWeek">&lt;</button>
+                                <div id="days" class="days-container"></div>
+                                <button class="calendar-nav-btn" id="nextWeek">&gt;</button>
+                            </div>
+                            <hr>
+                            <div class="timeSlots">
+                                <div id="timeSlots"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <input type="hidden" name="appointmentDate" id="appointmentDate" value="">
+                        <input type="hidden" name="appointmentTime" id="appointmentTime" value="">
+                        <div class="d-flex justify-content-end m-3">
+                            <button type="submit" class="base-button gray-btn large2-btn " id="confirmButton" disabled>
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+  const scheduleData = {{{json schedule}}};
+</script>
+<script src="/js/booking.js"></script>
+

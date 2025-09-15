@@ -1,0 +1,89 @@
+<div class="small-banner">
+    <div class="col-md-6 text-center" style="color: white;">
+        <h1 style="margin-bottom: 10px;">Profile</h1>
+        <h4>{{user.name}} {{user.surname}}</h4>
+        <p><strong>Member since: </strong>{{generateDate user.createdAt 'MMMM YYYY'}}</p>
+        <p><strong>Current Therapist: </strong>{{currentTherapist.therapist_id.user_id.name}}
+            {{currentTherapist.therapist_id.user_id.surname}}</p>
+    </div>
+</div>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="booking-title">Upcoming Bookings
+                <button id="toggleUpcomingBookings" class="btn toggle-button" onclick="toggleUpcomingBookings()">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </h2>
+            {{#unless futureBookings}}
+            <p class="no-booking-message">No upcoming bookings.</p>
+            {{/unless}}
+            <div id="futureBookings" class="bookings-container">
+                {{#each futureBookings}}
+                <div class="booking-card">
+                    <div class="booking-card-body">
+                        <h5 class="booking-card-title">Booking with {{this.therapist_id.user_id.name}}
+                            {{this.therapist_id.user_id.surname}}
+                        </h5>
+                        <p><strong>Starts: </strong>{{timeFromNow this.appointmentDate}}</p>
+                        <p><strong>Date: </strong>{{generateDate this.appointmentDate 'MMMM D, YYYY HH:mm'}}</p>
+                        <p><strong>Platform: </strong>{{this.platform}}
+                            <strong>User info: </strong>
+                            {{this.platformDetails}}
+                        </p>
+                        {{#if (eq this.status 'cancelled') }}
+                        <p><strong class="status-rejected">Cancelled by </strong>{{this.cancelledBy.name}}
+                            {{this.cancelledBy.surname}}</p>
+                        {{/if}}
+                        <div class="d-flex justify-content-end">
+                            <form action="/manageBooking/{{this._id}}" method="post">
+                                <button type="submit" class="btn booking-btn">Manage Booking</button>
+                            </form>
+                            <form action="/cancelBooking/{{this._id}}" method="post">
+                                <button type="submit" class="btn booking-btn">Cancel Booking</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2 class="booking-title">Past Bookings
+                <button id="togglePastBookings" class="btn toggle-button" onclick="togglePastBookings()">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </h2>
+            {{#unless pastBookings}}
+            <p class="no-booking-message">No past bookings.</p>
+            {{/unless}}
+            <div id="pastBookings" class="bookings-container">
+                {{#each pastBookings}}
+                <div class="booking-card">
+                    <div class="booking-card-body">
+                        <h5 class="booking-card-title">Booking with {{this.therapist_id.user_id.name}}
+                            {{this.therapist_id.user_id.surname}}
+                        </h5>
+                        <p><strong>Date: </strong>{{generateDate this.appointmentDate 'MMMM D, YYYY HH:mm'}}</p>
+                        <p><strong>Meeting Type: </strong>
+                            {{#if this.isFreeConsultation}} 15 minute free consultation
+                            {{else}} Normal appointment
+                            {{/if}}</p>
+                        <p><strong>Platform: </strong>{{this.platform}}
+                            <strong>User info: </strong>
+                            {{this.platformDetails}}
+                        </p>
+                        {{#if (eq this.status 'cancelled') }}
+                        <p><strong class="status-rejected">Cancelled by </strong>{{this.cancelledBy.name}}
+                            {{this.cancelledBy.surname}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

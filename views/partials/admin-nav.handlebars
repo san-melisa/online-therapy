@@ -1,0 +1,38 @@
+<div class="topnav">
+  <div class="topnav-left">
+    <a class="sidebar-brand text-center my-auto" href="/">Therapy Treasure</a>
+  </div>
+  <div class="topnav-right">
+    <div>
+      <button class="admin-logout" onclick="logout()">
+        LOGOUT <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-admin">
+  <div class="sidebar-admin">
+    <div class="sidebar-menu">
+      <ul>
+        {{#if isTherapist}}
+        <li><a href="/admin/therapist-index"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+        <li><a href="/admin/appointments"><i class="fas fa-calendar-check"></i>Appointments</a></li>
+        <li><a href="/admin/profile"><i class="fas fa-user-md"></i>Profile</a></li>
+        <li><a href="/admin/schedule"><i class="far fa-calendar-alt"></i> Schedule</a></li>
+
+        {{/if}}
+        {{#if isAdmin}}
+        <li><a href="/admin"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+        <li><a href="/admin/manageadmins"><i class="fas fa-user-cog"></i>Manage Admins</a></li>
+        <li><a href="/admin/users"><i class="fas fa-user"></i>Users</a></li>
+        <li><a href="/admin/therapists"><i class="fas fa-user-md"></i>Therapists</a></li>
+        <li><a href="/admin/applications"><i class="fas fa-file-alt"></i>Applications</a></li>
+        <li><a href="/admin/allappointments"><i class="fas fa-calendar-check"></i>All Appointments</a></li>
+        <li><a href="/admin/expertises"><i class="fas fa-file-alt"></i>Expertises</a></li>
+        <li><a href="/admin/categories"><i class="fas fa-file-alt"></i>Categories</a></li>
+        {{/if}}
+
+      </ul>
+    </div>
+  </div>

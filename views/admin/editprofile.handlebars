@@ -1,0 +1,155 @@
+<div class="content">
+    <div class="container-profile text-center">
+        <h2 class="mb-5">Edit Profile of {{therapist.user_id.name}} {{therapist.user_id.surname}}</h2>
+        <form method="POST" action="/admin/editprofile/{{therapist._id}}" enctype="multipart/form-data">
+            <div class="form-group">
+                {{#if therapist.photoUrl}}
+                <img src="{{therapist.photoUrl}}" alt="profile picture" width="300" height="300">
+                <br><br>
+                <label for="newPhotoUrl">Change Picture</label>
+                <br>
+                {{else}}
+                <label for="newPhotoUrl">Add Picture</label>
+                <br>
+                {{/if}}
+                <input type="file" class="form-control-file" id="photoUrl" name="photoUrl" accept=".jpg, .jpeg, .png">
+            </div>
+            <div class="form-group mt-3 mb-2">
+                <label for="isVisible">Visibility Status:</label>
+                <input type="checkbox" id="isVisible" name="isVisible" {{#if (eq therapist.isVisible true)}}checked{{/if}}>
+            </div>
+            <p>If you want to be active on the site, check the "Active Status" box.</p>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="name" class="form-control" id="name" name="name" value="{{therapist.user_id.name}}">
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="surname" class="form-control" id="surname" name="surname"
+                    value="{{therapist.user_id.surname}}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{therapist.user_id.email}}">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{therapist.phone}}">
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{therapist.title}}">
+            </div>
+            <div class="form-group">
+                <label for="licenceNumber">Licence Number</label>
+                <input type="text" class="form-control" id="licenceNumber" name="licenceNumber"
+                    value="{{therapist.licenceNumber}}">
+            </div>
+            <div class="form-group">
+                <label for="expertiseAreas">Expertise Areas</label>
+                <div class="checkbox-list">
+                    {{#each expertises }}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="expertiseAreas" value="{{ this._id }}"
+                            {{#if this.isSelected }}checked{{/if}}>
+                        <label class="form-check-label">{{ this.name }}</label>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="categoryAreas">Therapy Categories</label>
+                <div class="checkbox-list">
+                    {{#each categories }}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="categoryAreas" value="{{ this._id }}"
+                            {{#if this.isSelected }}checked{{/if}}>
+                        <label class="form-check-label">{{ this.name }}</label>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="certificates">Certificates</label>
+                <textarea class="form-control" id="certificates" name="certificates"
+                    rows="6">{{therapist.certificates}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea class="form-control" id="about" name="about" rows="6">{{therapist.about}}</textarea>
+            </div>
+            <div class="form-group mb-4 mt-4">
+                <label>You can upload your resume, motivation and reference letter in .pdf format.</label>
+                <div class="file-container mt-2">
+                    <div class="file-icon">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="file-info">
+                        {{#if therapist.cv}}
+                        <a href="{{therapist.cv}}" download>{{therapist.cv}}</a>
+                        {{/if}}
+                    </div>
+                    <div class="file-action">
+                        {{#if therapist.cv}}
+                        <a href="{{therapist.cv}}" download><i class="fa fa-download"></i></a>
+                        {{/if}}
+                    </div>
+                </div>
+                <label for="cv" class="btn btn-secondary" id="cv-button">
+                    <span class="button-text">Upload CV*</span>
+                    <input type="file" class="form-control-file cv-input" id="cv" name="cv" accept=".pdf" hidden>
+                </label>
+            </div>
+
+            <div class="form-group mb-4">
+                <div class="file-container">
+                    <div class="file-icon">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="file-info">
+                        {{#if therapist.motivationLetter}}
+                        <a href="{{therapist.motivationLetter}}" download>{{therapist.motivationLetter}}</a>
+                        {{/if}}
+                    </div>
+                    <div class="file-action">
+                        {{#if therapist.motivationLetter}}
+                        <a href="{{therapist.motivationLetter}}" download><i class="fa fa-download"></i></a>
+                        {{/if}}
+                    </div>
+                </div>
+                <label for="motivationLetter" class="btn btn-secondary" id="motivationLetter-button">
+                    <span class="button-text">Upload Motivation Letter</span>
+                    <input type="file" class="form-control-file motivation-letter-input" id="motivationLetter"
+                        name="motivationLetter" accept=".pdf" hidden>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="file-container">
+                    <div class="file-icon">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="file-info">
+                        {{#if therapist.referenceLetter}}
+                        <a href="{{therapist.referenceLetter}}" download>{{therapist.referenceLetter}}</a>
+                        {{/if}}
+                    </div>
+                    <div class="file-action">
+                        {{#if therapist.referenceLetter}}
+                        <a href="{{therapist.referenceLetter}}" download><i class="fa fa-download"></i></a>
+                        {{/if}}
+                    </div>
+                </div>
+                <label for="referenceLetter" class="btn btn-secondary" id="referenceLetter-button">
+                    <span class="button-text">Upload Reference Letter</span>
+                    <input type="file" class="form-control-file reference-letter-input" id="referenceLetter"
+                        name="referenceLetter" accept=".pdf" hidden>
+                </label>
+            </div>
+
+
+            <button type="submit" class="base-button purple-btn mt-3">Save Changes</button>
+        </form>
+    </div>
+</div>
+</div>

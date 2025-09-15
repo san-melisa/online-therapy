@@ -1,0 +1,22 @@
+<div class="content">
+  <h1>Therapist Statistics</h1>
+    <div class="row">
+      {{#each therapists}}
+      <div class="col-md-4 mt-4">
+        <div class="card">
+          <div class="card-header text-center">
+            <h3>{{this.user.name}} {{this.user.surname}}</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Total Appointments:</strong> {{this.totalAppointments}}</p>
+            <p><strong>Completed Appointments:</strong> {{this.completedAppointments}}</p>
+            <p><strong>Monthly Appointments:</strong> {{this.monthlyAppointments}}</p>
+            <p><strong>Percentage of Therapies:</strong> {{this.percentageTherapies}}%</p>
+            <p><strong>Cancelled Appointments by Therapist:</strong> {{this.cancelledByTherapist}}</p>
+            <p><strong>Cancelled Appointments by User:</strong> {{this.cancelledByUser}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>

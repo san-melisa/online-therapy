@@ -1,0 +1,34 @@
+<div class="content">
+    <h1>Applications</h1>
+    <table class="my-table">
+        <thead>
+            <tr>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each therapists}}
+            <tr>
+                <td>{{user_id.name}} {{user_id.surname}}</td>
+                <td>{{user_id.email}}</td>
+                <td>{{title}}</td>
+                <td>
+                    <span class="{{statusClass status}}">{{status}}</span>
+                </td>
+                <td style="text-align: right;">
+                    <form action="/admin/therapistprofile/{{_id}}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-secondary" style="margin-right: 2px;">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+</div>

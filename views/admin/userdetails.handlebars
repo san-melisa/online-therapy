@@ -1,0 +1,37 @@
+<div class="content">
+  <div class="container-profile ">
+    <table class="table text-left">
+      <tbody>
+        <tr>
+          <th scope="row">Name</th>
+          <td>{{user.name}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Surname</th>
+          <td>{{user.surname}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Created Time</th>
+          <td>{{generateDate user.createdAt "DD MMMM YYYY, HH:mm"}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Last Update</th>
+          <td>{{generateDate user.updatedAt "DD MMMM YYYY, HH:mm"}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end mt-4" >
+      <form action="/admin/edituser/{{user._id}}?_method=EDIT" method="GET">
+        <button type="submit" class="btn btn-primary" style="margin-right: 2px;"><i class="fas fa-edit"></i>
+          Edit</button>
+      </form>
+      <form action="/admin/deleteuser/{{user._id}}?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+      </form>
+    </div>
+  </div>
+</div>

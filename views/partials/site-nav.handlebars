@@ -1,0 +1,38 @@
+<header id="header">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container">
+                        <a class="navbar-brand" href="/">Therapy Treasure</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                                <div class="navbar-nav">
+                                        <a class="nav-link active normal-link" aria-current="page" href="/">Home</a>
+                                        {{#if isAdmin}}
+                                        <a class="nav-link normal-link" href="/admin">Admin Panel</a>
+                                        {{/if}}
+                                        {{#if isTherapist}}
+                                        <a class="nav-link normal-link" href="/admin/therapist-index">Therapist Panel</a>
+                                        {{/if}}
+                                        {{#if isUser}}
+                                        <a class="nav-link normal-link" href="/user">Profile</a>
+                                        {{/if}}
+                                        <a class="nav-link normal-link" href="/#therapists-section">Therapists</a>
+                                        <a class="nav-link normal-link" href="/contact">Contact</a>
+                                        {{#unless display }}
+                                        <a class="nav-link normal-link" href="/users/signin">Sign in</a>
+                                        <a class="base-button purple-btn" href="/users/signup">Sign up</a>
+                                        {{/unless}}
+                                        {{#if display}}
+                                        <a class="base-button purple-btn" href="/users/logout">Log Out</a>
+                                        {{/if}}
+
+                                </div>
+                        </div>
+                </div>
+        </nav>
+        <!-- End of Navbar -->
+</header>

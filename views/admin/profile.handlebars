@@ -1,0 +1,118 @@
+<div class="content">
+    <div class="container-profile text-center">
+        {{#if therapist.photoUrl}}
+        <img src="{{therapist.photoUrl}}" class="rounded-circle mt-4 mb-3" alt="profile picture" width="300"
+            height="300">
+        {{else}}
+        <div class="rounded-circle mt-4 mb-3 d-flex justify-content-center align-items-center"
+            style="width: 300px; height: 300px; border: 1px solid #ccc;">
+            <span>No picture</span>
+        </div>
+        {{/if}}
+        <h4 class="mb-0">{{therapist.user_id.name}} {{therapist.user_id.surname}}</h4>
+        <h6>
+            {{#if (eq therapist.isVisible true)}}
+            <p class="status-approved"> Visible</p>
+            {{else}}
+            <p class="status-rejected">Invisible</p>
+            {{/if}}
+        </h6>
+    </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>{{therapist.user_id.email}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone</th>
+                    <td>{{therapist.phone}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Title</th>
+                    <td>{{therapist.title}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Licence Number</th>
+                    <td>{{therapist.licenceNumber}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">University</th>
+                    <td>
+                        <ul class="list-unstyled mb-0">
+                            {{#each therapist.university}}
+                            <li>{{this.uniName}} - {{this.degree}} in {{this.department}} ({{this.graduationYear}})
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Expertise Areas</th>
+                    <td>
+                        <ul class="list-unstyled mb-0">
+                            {{#each therapist.expertiseAreas}}
+                            <li>{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                    </td>
+                </tr>
+                <th scope="row">Therapy Categories</th>
+                <td>
+                    <ul class="list-unstyled mb-0">
+                        {{#each therapist.categoryAreas}}
+                        <li>{{this.name}}</li>
+                        {{/each}}
+                    </ul>
+                </td>
+                </tr>
+                <tr>
+                    <th scope="row">Certificates</th>
+                    <td>{{therapist.certificates}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">About</th>
+                    <td>{{therapist.about}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cv</th>
+                    <td>{{#if therapist.cv}}
+                        <a href="{{therapist.cv}}" download>{{cvName}} <i class="fa fa-download m-2"></i></a>
+                        {{/if}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Motivation Letter</th>
+                    <td>{{#if therapist.motivationLetter}}
+                        <a href="{{therapist.motivationLetter}}" download>{{motivationName}} <i
+                                class="fa fa-download m-2"></i></a>
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Reference Letter</th>
+                    <td>{{#if therapist.referenceLetter}}
+                        <a href="{{therapist.referenceLetter}}" download>{{referenceName }}<i
+                                class="fa fa-download m-2"></i></a>
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Created Time</th>
+                    <td>{{generateDate therapist.user_id.createdAt "DD MMMM YYYY, HH:mm"}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Last Update</th>
+                    <td>{{generateDate therapist.user_id.lastUpdate "DD MMMM YYYY, HH:mm"}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    <div class="d-flex justify-content-center mt-4" >
+        <form action="/admin/editprofile/{{therapist._id}}?_method=EDIT" method="GET">
+            <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 2px;"><i class="fas fa-edit"></i>
+                Edit Profile</button>
+        </form>
+    </div>
+

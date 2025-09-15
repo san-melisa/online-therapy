@@ -1,0 +1,47 @@
+<div class="content">
+  <h1>Manage Admins</h1>
+  <form action="/admin/add-admin" class="mt-3 mb-3" method="post">
+    <div class="form-group">
+      <label for="user-email">Select new admin:</label>
+      <select name="user-email" id="user-email" class="form-control">
+        {{#each users}}
+        <option value="{{email}}">{{email}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <button type="submit" class="mt-2 mb-3 base-button purple-btn">Add Admin</button>
+  </form>
+  <table class="my-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each admin}}
+      <tr>
+        <td>{{name}} {{surname}}</td>
+        <td>{{email}}</td>
+        <td style="text-align: right;">
+          <div class="d-flex justify-content-end">
+            {{#if (eq @root.currentUser.id id)}}
+            <form action="/admin/editadmin/{{id}}?_method=EDIT" method="GET">
+              <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 2px;"><i class="fas fa-edit"></i>
+                Edit</button>
+            </form>
+            {{/if}}
+            {{#unless @root.isSingleAdmin}}
+            <form action="/admin/manageadmins/{{id}}?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+            </form>
+            {{/unless}}
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>
